@@ -1,0 +1,49 @@
+def encrypt(text,s):
+    result1 = ""
+   
+ 
+    for i in range(len(text)):
+        char = text[i]
+ 
+        #uppercase
+        if (char.isupper()):
+            result1 += chr((ord(char) + s-65) % 26 + 65)
+        #lowercase 
+        elif (char.islower()):
+            result1 += chr((ord(char) + s-97) % 26 + 97)
+ 
+        #special_character 
+        else:
+            result1 += chr((ord(char) + s - 33) % 32 + 33)
+            
+ 
+    return result1
+
+def decrypt(z,s):
+    result = ""
+ 
+    
+    for i in range(len(z)):
+        char = z[i]
+ 
+        #uppercase
+        if (char.isupper()):
+            result += chr((ord(char) - s-65) % 26 + 65)
+        #lowercase 
+        elif (char.islower()):
+            result += chr((ord(char) - s-97) % 26 + 97)
+ 
+        #special_character
+        else:
+            result += chr((ord(char) - s - 33) % 32 + 33)
+ 
+    return result
+ 
+text = input("enter a string")
+print(text) 
+s = int(input("enter key:"))
+z=encrypt(text,s) 
+print ("plain text  : " + text)
+print ("key : " + str(s))
+print ("Encripted Text: " + encrypt(text,s))
+print ("Decripted Text: " + decrypt(z,s))
